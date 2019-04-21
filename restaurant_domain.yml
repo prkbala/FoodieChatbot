@@ -1,0 +1,102 @@
+slots:
+  location:
+    type: text
+  cuisine:
+    type: text
+  price:
+    type: text
+  mail_preference:
+    type: text
+  mail_id:
+    type: text
+  location_supported:
+    type: bool
+  can_ask_send_mail:
+    type: bool
+  is_mail_id_provided:
+    type: bool
+
+entities:
+- location
+- cuisine
+- price
+- mail_preference
+- mail_id
+
+intents:
+ - greet
+ - affirm
+ - deny
+ - goodbye
+ - thankyou
+ - restaurant_search
+ - get_mail
+
+
+templates:
+  utter_greet:
+    - "hey there! How may i help you"
+    - "Hi, How can I help you!"
+    - "Hey, How is it going. How May I help you Today"
+  utter_goodbye:
+    - "goodbye :("
+    - "Bye-bye"
+  utter_default:
+    - "default message"
+  utter_ask_cuisine: 
+    - text: "what kind of cuisine would you like?"
+      buttons:
+      - title: "Chinese"
+        payload: "Chinese"
+      - title: "Italian"
+        payload: "Italian"
+      - title: "American"
+        payload: "American"
+      - title: "Mexican"
+        payload: "Mexican"
+      - title: "South Indian"
+        payload: "South Indian"
+      - title: "North Indian"
+        payload: "North Indian"
+  utter_ask_price_range: 
+    - text: "What price range are you looking at (average budget for two people) ?"
+      buttons:
+      - title: "Lesser than 300"
+        payload: "low"
+      - title: "300 to 700"
+        payload: "mid"
+      - title: "More than 700"
+        payload: "high"
+  utter_ask_howcanhelp:
+    - "how can I help you?"
+  utter_ask_location:
+    - "In what location?"
+  utter_non_operating_area:
+    - "Sorry, we do not operate in that area yet"
+  utter_details_on_mail:
+    - text: "Do you want the details of the top 10 restaurants based on your search on an email?"
+      buttons:
+        - title: "yes send"
+          payload: "Yes"
+        - title: "no dont"
+          payload: "No"
+  utter_ask_mail_id:
+    - "please provide your e-mail ID"
+  utter_ask_different_location:
+    - "Can you please specify some other location?"
+
+actions:
+- utter_greet
+- utter_goodbye
+- utter_default
+- utter_ask_howcanhelp
+- utter_ask_location
+- utter_ask_price_range
+- utter_ask_cuisine
+- utter_non_operating_area
+- utter_details_on_mail
+- utter_ask_mail_id
+- utter_ask_different_location
+- actions.ActionSearchRestaurants
+- actions.ActionIsOperationalCity
+- actions.ActionSendMail
