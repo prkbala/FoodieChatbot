@@ -58,7 +58,7 @@ class ActionIsOperationalCity(Action):
 
 		loc = tracker.get_slot('location')
 		if loc.lower() not in supported_locs:
-			return [SlotSet('location_supported', False)]
+			return [SlotSet('location_supported', False),SlotSet('location',None)]
 		else:
 			return [SlotSet('location_supported', True)]
 
@@ -115,7 +115,9 @@ class ActionSendMail(Action):
 			s.login('foodiebots@gmail.com', 'foodie123')
 			s.send_message(msg)
 			s.quit()
+			dispatcher.utter_message("Mail Sent")
 		except Exception as e:
+			dispatcher.utter_message("unable to sent mail")
 			return str(e)
 
 		return [SlotSet('is_mail_id_provided', True), SlotSet('location', ''), SlotSet('cuisine', ''), SlotSet('price', ''), SlotSet('mail_preference', 'no'), SlotSet('can_ask_send_mail', False)]
